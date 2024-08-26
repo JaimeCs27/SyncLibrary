@@ -114,6 +114,59 @@ int cantidadHilos = 3;
 barrierInit(&[nombreDeLaBarrera], cantidadHilos);
 ```
 
+### Uso de Read/Write Lock
+Crear una instancia del struct RWLock:
+```C
+struct RWLock nombreDelRWLock;
+```
+Antes de usar el RWLock, debe inicializarse con el método RWLockInit. Esto se hace en el main.
+```C
+RWLockInit(&nombreDelRWLock);
+```
+Para un lector, antes de acceder a la región crítica (donde se lee un recurso compartido), se debe llamar al método RWLockReadLock. Después de salir de la región crítica, se debe liberar el lock con RWLockUnlock.
+```C
+void *reader(void *arg) {
+  int id = *((int *)arg);
+  while (1) {
+    RWLockReadLock(&rwlock); // Adquiere el lock en modo lectura
+    printf("Lector %d: El valor de shared_data es %d\n", id, shared_data);
+    RWLockUnlock(&rwlock); // Libera el lock
+    sleep(1);              // Simula trabajo del lector
+    RWLockReadLock(&rwlock);
+    if (shared_data == 10) {
+      RWLockUnlock(&rwlock);
+      break;
+    }
+    RWLockUnlock(&rwlock);
+  }
+  return NULL;
+}
+```
+Para un escritor, antes de acceder a la región crítica (donde se modifica un recurso compartido), se debe llamar al método RWLockWriteLock. Después de la operación de escritura, se libera el lock con RWLockUnlock.
+```C
+void *writer(void *arg) {
+  int id = *((int *)arg);
+  while (1) {
+    RWLockWriteLock(&rwlock); // Adquiere el lock en modo escritura
+    shared_data += 1;
+    printf("Escritor %d: Incrementó shared_data a %d\n", id, shared_data);
+    RWLockUnlock(&rwlock); // Libera el lock
+    sleep(2);              // Simula trabajo del escritor
+    RWLockReadLock(&rwlock);
+    if (shared_data == 10) {
+      RWLockUnlock(&rwlock);
+      break;
+    }
+    RWLockUnlock(&rwlock);
+  }
+  return NULL;
+}
+```
+Después de que todos los hilos hayan terminado de ejecutarse y ya no sea necesario el RWLock, debe ser destruido para liberar los recursos utilizados.
+```C
+RWLockDestroy(&nombreDelRWLock);
+```
+
 ## Créditos
 
 - Jaime Cabezas Segura
