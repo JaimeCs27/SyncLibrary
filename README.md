@@ -53,7 +53,7 @@ Read/Write Lock:
 ## Compilacion
 
 Para compilar el ejemplo que se encuentra en el archivo "main.c" se debe hacer lo siguiente en la linea de comando donde se encuentre copiado el repositorio:
-'''
+'''makefile
   make
 '''
 Esto creara un archivo objeto llamado sync_program.
