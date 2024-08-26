@@ -53,14 +53,14 @@ Read/Write Lock:
 ## Compilacion
 
 Para compilar el ejemplo que se encuentra en el archivo "main.c" se debe hacer lo siguiente en la linea de comando donde se encuentre copiado el repositorio:
-'''console
+```console
   foo@bar~:make
-'''
+```
 Esto creara un archivo objeto llamado sync_program.
 Para correr el programa, en la carpeta donde se genero el archivo objeto en la linea de comando se usaria la siguiente linea:
-'''console
+```console
   foo@bar~:./sync_program
-'''
+```
 
 ## Uso
 
