@@ -61,16 +61,16 @@ Ejemplo:
 Uso del Semáforo
 
 Primero se debe crear una instancia del struct semaphore:
-
+```C
 struct semaphore [nombreDelSemáforo];
-
+```
 Luego en el main debe inicializarse con el método correspondiente:
-
+```C
 int cantidadDeEspaciosDisponibles = 5;
 semaphoreInit(&[nombreDelSemáforo], cantidadDeEspaciosDisponibles);
-
+```
 Ahora en el método creado para correr en los hilos buscamos la zona crítica que queremos proteger, y llamamos el método wait y despues de la región crítica llamariamos al método signal.
-
+```C
 void *thread(void* argv){
   // Some stuff
 
@@ -83,11 +83,11 @@ void *thread(void* argv){
 
   return 0;
 }
-
+```
 Por último despues de que se hiciera join de lo hilos y todo el proceso de sincronizar acabara se destruye el objeto
-
+```C
 semaphoreDestroy(&[nombreDelSemáforo]);
-
+```
 ## Creditos
 
 - Jaime Cabezas Segura
