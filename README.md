@@ -4,6 +4,7 @@ Una biblioteca pequeña con herramientas para la sincronización de hilos, utili
 
 ## Tabla de contenidos
 - [Implementación](#implementación)
+- [Compilacion](#compilacion)
 - [Uso](#uso)
 - [Créditos](#créditos)
 
@@ -48,6 +49,18 @@ Read/Write Lock:
   RWLockWriteLock(struct RWLock *rwlock): Método que adquiere el bloqueo en caso de escritura. recibe como parámetro un puntero a un RWlock.
   RWLockUnlock(struct RWLock *rwlock): Método que libera el bloqueo en ambos casos lectura o escritura. recibe como parámetro un puntero a un RWlock.
   RWLockDestroy(struct RWLock *rwlock): Método encargado de liberar la memoria del objeto RWLock.
+
+## Compilacion
+
+Para compilar el ejemplo que se encuentra en el archivo "main.c" se debe hacer lo siguiente en la linea de comando donde se encuentre copiado el repositorio:
+'''
+  make
+'''
+Esto creara un archivo objeto llamado sync_program.
+Para correr el programa, en la carpeta donde se genero el archivo objeto en la linea de comando se usaria la siguiente linea:
+'''
+  ./sync_program
+'''
 
 ## Uso
 
