@@ -104,6 +104,15 @@ semaphoreDestroy(&[nombreDelSemáforo]);
 
 
 ### Uso de la Barrera
+Primero se debe crear una instancia del struct barrier:
+```C
+struct barrier [nombreDeLaBarrera];
+```
+Luego en el main debe inicializarse con el método correspondiente:
+```C
+int cantidadHilos = 3;
+barrierInit(&[nombreDeLaBarrera], cantidadHilos);
+```
 
 ## Créditos
 
