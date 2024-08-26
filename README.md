@@ -114,6 +114,26 @@ int cantidadHilos = 3;
 barrierInit(&[nombreDeLaBarrera], cantidadHilos);
 ```
 
+Cuando un hilo llega a la llamada barrierWait(&barrier), se detiene y espera hasta que todos los demás hilos también lleguen a ese mismo punto y una vez que todos los hilos han llegado a la barrera, la barrera se "libera" y todos los hilos pueden continuar con la siguiente fase de ejecución.
+
+```C
+void *tarea(void *arg) {
+  int thread_id = *(int *)arg;
+
+  printf("Hilo %d: Ejecutando la primera fase.\n", thread_id);
+  sleep(rand() % 2 + 1); // Simular trabajo en la primera fase
+
+  // Llegar a la barrera y esperar a que todos los hilos lleguen
+  printf("Hilo %d: Esperando en la barrera.\n", thread_id);
+  barrierWait(&barrier);
+
+  // Después de que todos los hilos hayan pasado la barrera
+  printf("Hilo %d: Continuando con la segunda fase.\n", thread_id);
+  sleep(rand() % 2 + 1); // Simular trabajo en la segunda fase
+
+  return NULL;
+}
+```
 ### Uso de Read/Write Lock
 Crear una instancia del struct RWLock:
 ```C
