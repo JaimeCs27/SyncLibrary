@@ -71,7 +71,7 @@ Ejemplo:
   #include "Barrier.h" // En caso de usar barrera
   #include "ReadWriteLock.h" // En caso de usar R/W Lock
 ```
-Uso del Semáforo
+### Uso del Semáforo
 
 Primero se debe crear una instancia del struct semaphore:
 ```C
@@ -103,7 +103,7 @@ semaphoreDestroy(&[nombreDelSemáforo]);
 ```
 
 
-Uso de la Barrera
+### Uso de la Barrera
 
 ## Créditos
 
