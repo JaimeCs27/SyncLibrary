@@ -5,7 +5,7 @@ Una biblioteca pequeña con herramientas para la sincronización de hilos, utili
 ## Tabla de contenidos
 - [Implementación](#implementación)
 - [Uso](#uso)
-- [Creaditos](#creditos)
+- [Créditos](#créditos)
 
 ## Implementación
 
@@ -88,7 +88,11 @@ Por último despues de que se hiciera join de lo hilos y todo el proceso de sinc
 ```C
 semaphoreDestroy(&[nombreDelSemáforo]);
 ```
-## Creditos
+
+
+Uso de la Barrera
+
+## Créditos
 
 - Jaime Cabezas Segura
 - Sebastián Lopez Villavicencio
