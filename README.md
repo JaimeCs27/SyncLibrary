@@ -53,10 +53,11 @@ Read/Write Lock:
 
 Para hacer uso de alguno de los métodos de sincronización de la biblioteca, simplemente se debe hacer un include del archivo .h del método que quisieramos.
 Ejemplo:
+```C
   #include "Semaphore.h" //En caso de usar semáfor
   #include "Barrier.h" // En caso de usar barrera
   #include "ReadWriteLock.h" // En caso de usar R/W Lock
-
+```
 Uso del Semáforo
 
 Primero se debe crear una instancia del struct semaphore:
