@@ -1,16 +1,29 @@
-all: main
 
-CC = clang
-override CFLAGS += -g -Wno-everything -pthread -lm
+# Compilador y banderas
+CC = gcc
+CFLAGS = -Wall -pthread -I.
 
-SRCS = $(shell find . -name '.ccls-cache' -type d -prune -o -type f -name '*.c' -print)
-HEADERS = $(shell find . -name '.ccls-cache' -type d -prune -o -type f -name '*.h' -print)
+# Archivos fuente y objetos
+SRCS = main.c Barrier.c ReadWriteLock.c Semaphore.c
+OBJS = $(SRCS:.c=.o)
 
-main: $(SRCS) $(HEADERS)
-	$(CC) $(CFLAGS) $(SRCS) -o "$@"
+# Nombre del ejecutable
+TARGET = sync_program
 
-main-debug: $(SRCS) $(HEADERS)
-	$(CC) $(CFLAGS) -O0 $(SRCS) -o "$@"
+# Regla principal para compilar todo
+all: $(TARGET)
 
+# Regla para crear el ejecutable
+$(TARGET): $(OBJS)
+	$(CC) -o $@ $^ $(CFLAGS)
+
+# Regla para compilar los archivos .o
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+# Limpiar los archivos generados
 clean:
-	rm -f main main-debug
+	rm -f $(OBJS) $(TARGET)
+
+# Phony targets
+.PHONY: all clean
